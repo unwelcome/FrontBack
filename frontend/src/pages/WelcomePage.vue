@@ -1,5 +1,5 @@
 <template>
- Welcome Page
+  <p>Welcome pagee</p>
 </template>
 <script lang="ts">
 export default {
