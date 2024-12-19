@@ -4,9 +4,9 @@ export const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      name: 'WelcomePage',
+      name: 'MainPage',
       path: '/',
-      component: () => import('@/pages/WelcomePage.vue'),
+      component: () => import('@/pages/MainPage.vue'),
       meta: { requiresAuth: false },
     },
     {
@@ -19,6 +19,24 @@ export const router = createRouter({
       name: 'SignUpPage',
       path: '/signup',
       component: () => import('@/pages/SignUpPage.vue'),
+      meta: { requiresAuth: false },
+    },
+    {
+      name: 'FirstSemesterPage',
+      path: '/first-semester',
+      component: () => import('@/pages/FirstSemester.vue'),
+      meta: { requiresAuth: false },
+    },
+    {
+      name: 'SecondSemesterPage',
+      path: '/second-semester',
+      component: () => import('@/pages/SignUpPage.vue'),
+      meta: { requiresAuth: false },
+    },
+    {
+      name: 'ServicePage',
+      path: '/service',
+      component: () => import('@/pages/ServicePage.vue'),
       meta: { requiresAuth: false },
     },
   ],

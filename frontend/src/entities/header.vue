@@ -1,39 +1,62 @@
 <template>
-  <div class="flex flex-row items-stretch h-14 w-full px-5 header-shadow z-10">
-    <div class="h-full grid content-center mx-16">
-      <div class="font-semibold text-3xl cursor-pointer">SITELOGO</div>
+  <header class="flex flex-row justify-between items-center w-full" id="header">
+    <div class="my-1 ml-5 flex-shrink-0">
+      <img class="w-12 aspect-square" alt="Logo" src="../assets/icons/icon-logo.svg"/>
     </div>
-    <div class="h-full flex flex-row gap-x-2 flex-grow">
+    <div class="flex flex-col mr-5">
+      <p>Группа ЭФБО-01-23</p>
+      <p>Жаров Степан Дмитриевич</p>
+    </div>
+  </header>
+  <nav class="w-full header-shadow" id="nav">
+    <div class="flex flex-row items-center self-start h-10 gap-x-7 w-full justify-around ml-0 md:justify-start md:w-auto md:ml-5">
       <div
-        class="h-full min-w-16 grid cursor-pointer justify-center content-center border-bottom border-gray-500 hover:border-b-sky-500"
-      >
-        <a>Home</a>
+        @click="$router.push({name: 'MainPage'})" 
+        class="nav-link" 
+        :class="{'nav-clicked':$route.path === '/'}">
+        
+        <a>Главная</a>
       </div>
       <div
-        class="h-full min-w-16 grid cursor-pointer justify-center content-center border-bottom border-gray-500 hover:border-b-sky-500"
-      >
-        <a>About</a>
+        @click="$router.push({name: 'FirstSemesterPage'})" 
+        class="nav-link" 
+        :class="{'nav-clicked':$route.path === '/first-semester'}">
+        
+        <a>Первый семестр</a>
       </div>
       <div
-        class="h-full min-w-16 grid cursor-pointer justify-center content-center border-bottom border-gray-500 hover:border-b-sky-500"
-      >
-        <a>Main</a>
+        
+        class="nav-link nav-link-disabled" 
+        :class="{'nav-clicked':$route.path === '/second-semester'}">
+        
+        <a>Второй семестр</a>
       </div>
       <div
-        class="h-full min-w-16 grid cursor-pointer justify-center content-center border-bottom border-gray-500 hover:border-b-sky-500"
-      >
-        <a>F.A.Q.</a>
+        @click="$router.push({name: 'ServicePage'})" 
+        class="nav-link" 
+        :class="{'nav-clicked':$route.path === '/service'}">
+        
+        <a>Услуги</a>
+      </div>
+      <div
+        @click="$router.push({name: 'LoginPage'})" 
+        class="nav-link" 
+        :class="{'nav-clicked':$route.path === '/login'}">
+        
+        <a>Авторизация</a>
       </div>
     </div>
-    <div class="flex flex-row gap-x-2 items-center mr-16">
-      <img
-        class="rounded-full w-10 h-10"
-        src="../assets/icons/user-avatar.png"
-      />
-      <div class="cursor-pointer">UserName</div>
-    </div>
-  </div>
+  </nav>
 </template>
 <script lang="ts">
-export default {};
+import { mapStores } from "pinia";
+import { useElementsStore } from "../stores/elements";
+export default {
+  computed: {
+    ...mapStores(useElementsStore),
+  },
+  mounted(){
+    this.elementsStore.headerHeight = document.getElementById('header')!.offsetHeight + document.getElementById('nav')!.offsetHeight;
+  },
+};
 </script>

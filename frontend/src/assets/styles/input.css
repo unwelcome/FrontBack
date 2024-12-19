@@ -9,6 +9,10 @@
   flex-direction: column;
 }
 
+body{
+  background-color: #f1f1f1;
+}
+
 .transition-input{
   transition: background-color .1s ease-out, color .1s ease-out, border-color .1s ease-out;
 }
@@ -22,10 +26,6 @@
   box-shadow: 0 0 2px rgb(185, 185, 185), 0 0 5px rgb(204, 204, 204);
 }
 
-.login-shadow{
-  box-shadow: 0 0 2px rgb(185, 185, 185), 0 0 5px rgb(204, 204, 204);
-}
-
 .login-label{
   @apply top-5 left-1 text-lg;
 }
@@ -33,3 +33,201 @@
   @apply top-0 left-0 text-sm;
 }
 
+.scrollable{
+  --scroll-bar-width: 8px;
+  --border-radius-scroll-bar: 3px; /*calc(var(--scroll-bar-width) / 2);*/
+  --bg-color-0: #808a94; /*slider color*/
+  --bg-color-1: #c4d3e2; /*track color*/
+  overflow-y: scroll;
+  scrollbar-width:var(--scroll-bar-width);
+}
+.scrollable::-webkit-scrollbar{
+  width: var(--scroll-bar-width);
+}
+.scrollable::-moz-scrollbar {
+  width: var(--scroll-bar-width);
+}
+.scrollable::-webkit-scrollbar-track{
+  background-color: var(--bg-color-1);
+  border-radius: var(--border-radius-scroll-bar);
+  transition: background-color 1s ease-in-out;
+}
+.scrollable::-moz-scrollbar-track {
+  background-color: var(--bg-color-1);
+  border-radius: var(--border-radius-scroll-bar);
+  transition: background-color 1s ease-in-out;
+}
+.scrollable::-webkit-scrollbar-thumb{
+  background-color: transparent;
+  border-radius: var(--border-radius-scroll-bar);
+  transition: background-color 1s ease-in-out;
+}
+.scrollable::-moz-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: var(--border-radius-scroll-bar);
+  transition: background-color 1s ease-in-out;
+}
+.scrollable:hover::-webkit-scrollbar-thumb{
+  background-color: var(--bg-color-0);
+}
+.scrollable:hover::-moz-scrollbar-thumb {
+  background-color: var(--bg-color-0);
+}
+.scrollable:hover::-webkit-scrollbar-track{
+  background-color: var(--bg-color-1);
+}
+.scrollable:hover::-moz-scrollbar-track {
+  background-color: var(--bg-color-1);
+}
+
+
+*{
+  color: #111111;
+}
+
+.nav-link{
+  @apply px-4 py-2 cursor-pointer border-b-2 transition-colors border-gray-300 hover:border-sky-400;
+}
+.nav-link > *{
+  @apply transition-colors;
+}
+.nav-link:hover > *{
+  @apply text-sky-400;
+}
+.nav-clicked > *{
+  @apply text-cyan-600
+}
+.nav-link-disabled, .nav-link-disabled:hover, .nav-link-disabled:active{
+  border-color: rgb(209 213 219);
+}
+.nav-link-disabled > *, .nav-link-disabled:hover > *, .nav-link-disabled:active > *{
+  color: #888888;
+}
+
+.aside{
+  @apply flex-shrink-0 flex-col p-3 b-right hidden sm:flex sm:w-auto md:w-56
+}
+
+.b-bottom{
+  @apply border-solid border-b-2 border-b-slate-100
+}
+
+.b-right{
+  @apply border-solid border-r-2 border-r-slate-100
+}
+
+.b-top{
+  @apply border-solid border-t-2 border-t-slate-100
+}
+
+.main-title{
+  @apply mt-3 text-center text-2xl
+}
+
+.section-title{
+  @apply mb-1 text-xl
+}
+
+.section-text{
+  @apply text-justify text-base leading-7
+}
+
+.section-table{
+  @apply w-full border-collapse bg-gray-200;
+}
+.section-table > * > tr{
+  @apply border-solid border-b-2 border-slate-300
+}
+.section-table > * > tr > td{
+  @apply py-1 px-2 border-solid border-r-2 border-slate-300
+}
+.section-table > * > tr > td:last-child{
+  @apply border-solid border-0
+}
+.section-table > * > tr:last-child{
+  @apply border-solid border-0
+}
+
+.slider-nav{
+  @apply w-2 h-2 rounded-full bg-slate-50
+}
+.slider-nav-selected{
+  @apply w-3 h-3
+}
+
+.checkbox-slider{
+  appearance: none;
+  position: relative;
+  height: 100%;
+  width: var(--track-width);
+  --circle-size: 16px;
+  --track-height: 14px;
+  --track-width: 30px;
+}
+.checkbox-slider::before{
+  content: "";
+  background-color: #888888;
+  width: var(--track-width);
+  height: var(--track-height);
+  position: absolute;
+  bottom: 0;
+  transform: translateY(25%);
+  border-radius: var(--track-height);
+  transition: background-color .2s ease-in-out;
+}
+.checkbox-slider::after{
+  content: "";
+  position: absolute;
+  background-color: aliceblue;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: var(--circle-size);
+  left: 0;
+  bottom: 0;
+  transform: translateY(calc(25% + 1px));
+  transition: left .2s ease-in-out;
+}
+.checkbox-slider:checked::before{
+  background-color: rgb(93, 171, 255);
+}
+.checkbox-slider:checked::after{
+  left: calc(var(--track-width) - var(--circle-size));
+}
+
+.form-section{
+  width: 100%;
+  display: grid;
+  column-gap: 8px;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 8px;
+}
+.form-section > label{
+  justify-self: flex-end;
+}
+.input{
+  background-color: transparent;
+  border: 2px solid white;
+  transition: border-color .2s ease-in-out;
+  @apply border-slate-200 rounded py-1 px-2 outline-none hover:border-slate-400 focus:border-sky-500;
+}
+option{
+  @apply bg-sky-700
+}
+.form-section-agree > input{
+  justify-self: flex-end;
+}
+.form-section-agree > label{
+  justify-self: flex-start;
+}
+.error-input{
+  @apply border-red-600
+}
+
+@keyframes timeLine{
+  from{
+    width: 100%;
+  }
+  to{
+    width: 0px;
+  }
+}
