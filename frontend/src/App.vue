@@ -2,6 +2,7 @@
   <StatusWindow />
   <Header />
   <RouterView />
+  <p>ну типа тест текст</p>
 </template>
 <script lang="ts">
 import StatusWindow from "./entities/statusWindow.vue";
