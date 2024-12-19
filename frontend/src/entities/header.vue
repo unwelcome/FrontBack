@@ -39,8 +39,8 @@
         <a>Услуги</a>
       </div>
       <div
-        @click="$router.push({name: 'LoginPage'})" 
-        class="nav-link" 
+
+        class="nav-link nav-link-disabled" 
         :class="{'nav-clicked':$route.path === '/login'}">
         
         <a>Авторизация</a>

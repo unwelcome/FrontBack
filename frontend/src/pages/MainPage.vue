@@ -1,12 +1,12 @@
 <template>
   <aside class="flex flex-col gap-y-2 items-center w-64 flex-shrink-0 h-full cursor-default border-r-2 border-gray-300">
     <h2 class="mt-2 text-xl">Навигация</h2>
-    <div class="flex flex-col gap-y-2 w-full">
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#frontend')">FrontEnd</a>
+    <div class="flex flex-col gap-y-2 w-10/12">
+      <div class="nav-link" @click="scrollToAnchor('#frontend')">
+        <a>FrontEnd</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#backend')">BackEnd</a>
+      <div class="nav-link" @click="scrollToAnchor('#backend')">
+        <a>BackEnd</a>
       </div>
     </div>
   </aside>
@@ -15,10 +15,10 @@
     :style="{'height': getMainHeight + 'px'}">
     
     <div class="flex flex-col p-2 gap-y-8 w-10/12">
-      <h2 class="main-title">Добро пожаловать на мой сайт</h2>
+      <h1 @click="sendAlert" class="main-title">Добро пожаловать на мой сайт</h1>
 
       <section class="flex flex-row items-center gap-x-4 cursor-default">
-        <img class="w-28 h-28 rounded-xl" alt="Photo" src="../assets/images/profile.jpg" >
+        <img id="photo" class="w-32 h-32 rounded-xl transition-all" alt="Photo" :src="getProfileUrl">
         <div>Меня зовут Жаров Степан Дмитриевич и я начинающий специалист по веб разработке.</div>
       </section>
 
@@ -38,8 +38,8 @@
           В конечном итоге, фронтенд разработчик делает интернет-мир более красивым и доступным для всех.</p>
         <iframe 
           class="aspect-video w-96 rounded-xl"
-          src="https://www.youtube.com/embed/YG8Vhz1pAsU?si=KFrwmkjI48Vexcf1" 
-          title="Frontend course" 
+          src="https://www.youtube.com/embed/67Eb2Ba46PE?si=3sIR0mfYfWjkPzd1" 
+          title="Frontend course"
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           referrerpolicy="strict-origin-when-cross-origin" 
@@ -73,7 +73,7 @@
           Благодаря его работе, пользователи получают качественный и бесперебойный доступ к информации и функционалу онлайн-сервисов.</p>
         <iframe 
           class="aspect-video w-96 rounded-xl"  
-          src="https://www.youtube.com/embed/243pQXC5Ebs?si=vrKvSwKFcCJyJzeG" 
+          src="https://www.youtube.com/embed/8ulA5-cb2po?si=7KECJvsN1fm7v7Qk" 
           title="Backend course" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -89,17 +89,62 @@ import { mapStores } from "pinia";
 import { useElementsStore } from "../stores/elements";
 import { SCROLL_TO_ANCHOR } from "@/helpers/constants";
 export default {
+  data(){
+    return {
+      profileUrl: '../assets/images/profile.jpg',
+    }
+  },
   computed: {
     ...mapStores(useElementsStore),
 
     getMainHeight(){
       return this.elementsStore.windowHeight - this.elementsStore.headerHeight - this.elementsStore.footerHeight;
+    },
+    getProfileUrl(){
+      return new URL(this.profileUrl, import.meta.url).href;
     }
+  },
+  mounted(){
+    const photo = document.getElementById('photo');
+    if(photo === null) return;
+
+    photo.addEventListener('mouseover', this.scalePhoto);
+    photo.addEventListener('mouseout', this.unscalePhoto);
+
+    photo.addEventListener('click', this.swapProfilePhoto);
+
+    photo.addEventListener('dblclick', this.alertProfile);
   },
   methods: {
     scrollToAnchor(anchor: string){
       SCROLL_TO_ANCHOR(anchor);
+    },
+    sendAlert(){
+      alert('Вы нажали на заголовок h1! Жеееесть!');
+    },
+    scalePhoto(event: any){
+      event.target.style.scale = 1.1;
+    },
+    unscalePhoto(event: any){
+      event.target.style.scale = 1;
+    },
+    swapProfilePhoto(){
+      this.profileUrl = this.profileUrl === '../assets/images/profile.jpg' ? '../assets/images/profile-second.jpg' : '../assets/images/profile.jpg';
+    },
+    alertProfile(){
+      alert('Не налегай, у меня не так много любимых преподавателей!');
     }
-  }
+  },
+  unmounted() {
+    const photo = document.getElementById('photo');
+    if(photo === null) return;
+
+    photo.removeEventListener('mouseover', this.scalePhoto);
+    photo.removeEventListener('mouseout', this.unscalePhoto);
+
+    photo.removeEventListener('click', this.swapProfilePhoto);
+
+    photo.removeEventListener('dblclick', this.alertProfile);
+  },
 };
 </script>

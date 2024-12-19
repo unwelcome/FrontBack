@@ -3,14 +3,14 @@
 //contants
 
 export const TABLE_LECTURES_FIRST_SEMESTER = [
-  {title: 'Основы языка HTML',                        attendance: true},
-  {title: 'Углубленное изучение HTML',                attendance: true},
-  {title: 'Основы работы с CSS',                      attendance: true},
-  {title: 'Адаптивная верстка Flexbox и Grid Layout', attendance: true},
-  {title: 'Bootstrap - работа с фреймворком',         attendance: false},
-  {title: 'Основы языка Javascript',                  attendance: false},
-  {title: 'Работа с DOM и событиями в Javascript',    attendance: false},
-  {title: 'Введение в GitHub и GitHub Pages',         attendance: false}
+  {title: 'Основы языка HTML',                        attendance: true  },
+  {title: 'Углубленное изучение HTML',                attendance: true  },
+  {title: 'Основы работы с CSS',                      attendance: true  },
+  {title: 'Адаптивная верстка Flexbox и Grid Layout', attendance: true  },
+  {title: 'Bootstrap - работа с фреймворком',         attendance: false },
+  {title: 'Основы языка Javascript',                  attendance: false },
+  {title: 'Работа с DOM и событиями в Javascript',    attendance: false },
+  {title: 'Введение в GitHub и GitHub Pages',         attendance: false }
 ];
 
 export const TABLE_PRACTICALS_FIRST_SEMESTER = [
@@ -30,6 +30,24 @@ export const TABLE_PRACTICALS_FIRST_SEMESTER = [
   {title: 'Анимации и работа с ними',                                 attendance: true, completed: false, task: 'Добавить анимации на сайт с использованием css / JS'},
   {title: 'GitHub',                                                   attendance: true, completed: false, task: 'Создать репозиторий проекта на GitHub для удобного контроля версий'},
   {title: 'Защита проекта',                                           attendance: true, completed: false, task: 'Защитить, создаваемый весь семестр, проект'}
+];
+
+export const TABLE_PRACTICALS_SECOND_SEMESTER = [
+  { id: 1, title: 'Базовое бэкенд-приложение',                            attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 2, title: 'HTTP-запросы',                                         attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 3, title: 'JSON и работа с ним',                                  attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 4, title: 'HTTP-ответы',                                          attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 5, title: 'Проектирование API',                                   attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 6, title: 'Роутинг и его настройка',                              attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 7, title: 'NoSQL базы данных',                                    attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 8, title: 'Обеспечение авторизации и доступа пользователей',      attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 9, title: 'Работа сторонних сервисов уведомления и авторизации',  attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 10, title: 'Основы ReactJS',                                      attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 11, title: 'Работа с компонентами динамической DOM',              attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 12, title: 'Использование хуков в React',                         attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 14, title: 'Основы микросервисной архитектуры',                   attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 15, title: 'Разработка классических модулей веб-приложений',      attendance: false, completed: false,  task: 'Тссс...'},
+  { id: 16, title: 'Разработка классических модулей веб-приложений',      attendance: false, completed: false,  task: 'Тссс...'},
 ];
 
 export const SLIDER_CARDS = [

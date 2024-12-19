@@ -1,18 +1,18 @@
 <template>
   <aside class="flex flex-col gap-y-2 items-center w-64 flex-shrink-0 h-full cursor-default border-r-2 border-gray-300">
     <h2 class="mt-2 text-xl">Навигация</h2>
-    <div class="flex flex-col gap-y-2 w-full">
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#table-lectures')">Lectures</a>
+    <div class="flex flex-col gap-y-2 w-10/12">
+      <div class="nav-link" @click="scrollToAnchor('#table-lectures')">
+        <a>Lectures</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#table-practicals')">Practicals</a>
+      <div class="nav-link" @click="scrollToAnchor('#table-practicals')">
+        <a>Practicals</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#adress-wrapper')">Adress</a>
+      <div class="nav-link" @click="scrollToAnchor('#adress-wrapper')">
+        <a>Adress</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#program')">Programm</a>
+      <div class="nav-link" @click="scrollToAnchor('#program')">
+        <a>Programm</a>
       </div>
     </div>
   </aside>
@@ -22,8 +22,7 @@
     :style="{'height': getMainHeight + 'px'}">
     
     <div class="flex flex-col p-2 gap-y-8 w-10/12">
-
-      <h2 class="main-title">Первый семестр</h2>
+      <h1 @click="sendAlert" class="main-title">Первый семестр</h1>
 
       <section class="section">
         <h3 class="section-title">Лекции</h3>
@@ -84,6 +83,12 @@
 
           </tbody>
         </table>
+        <div class="flex flex-row mt-2">
+          <div @click="toggleSemester" class="px-4 py-2 rounded-lg cursor-pointer transition-colors bg-sky-400 hover:bg-sky-500 active:bg-green-500">
+            <p v-if="selectedSemester === 1" class="text-white text-lg">Подсмотреть темы второго семестра</p>
+            <p v-else class="text-white text-lg">Вернуться к первому семестру</p>
+          </div>
+        </div>
       </section>
 
       <section class="section">
@@ -148,13 +153,14 @@
 <script lang="ts">
 import { mapStores } from "pinia";
 import { useElementsStore } from "../stores/elements";
-import { SCROLL_TO_ANCHOR, SLIDER_CARDS, TABLE_LECTURES_FIRST_SEMESTER, TABLE_PRACTICALS_FIRST_SEMESTER } from "@/helpers/constants";
+import { SCROLL_TO_ANCHOR, SLIDER_CARDS, TABLE_LECTURES_FIRST_SEMESTER, TABLE_PRACTICALS_FIRST_SEMESTER, TABLE_PRACTICALS_SECOND_SEMESTER } from "@/helpers/constants";
 
 export default {
   data(){
     return {
       selectedTaskIndex: -1,
       currentSliderID: 1,
+      selectedSemester: 1,
     }
   },
   computed: {
@@ -168,7 +174,7 @@ export default {
       return TABLE_LECTURES_FIRST_SEMESTER;
     },
     getTablePracticalsFirstSemester(){
-      return TABLE_PRACTICALS_FIRST_SEMESTER;
+      return this.selectedSemester === 1 ? TABLE_PRACTICALS_FIRST_SEMESTER : TABLE_PRACTICALS_SECOND_SEMESTER;
     },
     getsliderCards(){
       return SLIDER_CARDS;
@@ -187,6 +193,12 @@ export default {
     createUrl(url: string){
       return new URL(url, import.meta.url).href;
     },
+    sendAlert(){
+      alert('Вы нажали на заголовок h1! Жеееесть!');
+    },
+    toggleSemester(){
+      this.selectedSemester = this.selectedSemester === 1 ? 2 : 1;
+    }
   }
 };
 </script>

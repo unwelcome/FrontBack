@@ -59,21 +59,21 @@
 
   <aside class="flex flex-col gap-y-2 items-center w-64 flex-shrink-0 h-full cursor-default border-r-2 border-gray-300">
     <h2 class="mt-2 text-xl">Навигация</h2>
-    <div class="flex flex-col gap-y-2 w-full">
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#WebDev')">Web Development</a>
+    <div class="flex flex-col w-10/12 gap-y-2">
+      <div class="nav-link" @click="scrollToAnchor('#WebDev')">
+        <a>Web Development</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#development')">Development</a>
+      <div class="nav-link" @click="scrollToAnchor('#development')">
+        <a>Development</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#couch')">Couching</a>
+      <div class="nav-link" @click="scrollToAnchor('#couch')">
+        <a>Couching</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#consultation')">Consultations</a>
+      <div class="nav-link" @click="scrollToAnchor('#consultation')">
+        <a>Consultations</a>
       </div>
-      <div class="nav-link">
-        <a @click="scrollToAnchor('#success')">Success</a>
+      <div class="nav-link" @click="scrollToAnchor('#success')">
+        <a>Success</a>
       </div>
     </div>
   </aside>
@@ -83,7 +83,7 @@
     :style="{'height': getMainHeight + 'px'}">
     
     <div class="flex flex-col p-2 gap-y-8 w-10/12">
-      <h2 class="main-title">Разработка веб приложений</h2>
+      <h1 @click="sendAlert" class="main-title">Разработка веб приложений</h1>
 
       <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 my-3">
         <div 
@@ -180,6 +180,9 @@ export default {
       this.hideForm();
       this.acceptedAgree = false;
       this.statusWindowStore.showStatusWindow(StatusCodes.success, 'Завяление успешно отправлено!');
+    },
+    sendAlert(){
+      alert('Вы нажали на заголовок h1! Жеееесть!');
     }
   }
 };
